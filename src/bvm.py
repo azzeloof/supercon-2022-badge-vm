@@ -10,6 +10,7 @@ from bvmGUI import GUI
 import sys
 import getopt
 
+"""
 class BVM:
     def __init__(self, inputMode):
         self.progMem = []
@@ -17,15 +18,18 @@ class BVM:
         self.inputMode = inputMode
 
     def load(self, program):
+        headerLen = 6
         if program is not None:
-            with open(program) as f:
-                lines = f.readlines()
-                for line in lines:
-                    #line = line.replace(" ","")
-                    line = line.replace("\n","")
-                    line = line.split('//')[0]
-                    if line != '':
-                        self.progMem.append(line)
+            with open(program, 'rb') as f:
+                prog = f.read()
+                print(prog)
+                #lines = f.readlines()
+                #for line in lines:
+                #    #line = line.replace(" ","")
+                #    line = line.replace("\n","")
+                #    line = line.split('//')[0]
+                #    if line != '':
+                #        self.progMem.append(line)
 
     def step(self):
         instruction = parse(self.progMem[self.cpu.getPC()], self.inputMode)
@@ -39,36 +43,15 @@ class BVM:
     def run(self):
         while self.cpu.getPC() < len(self.progMem):
             self.step()
-
+"""
 
 def main(argv):
-    try:
-        opts, args = getopt.getopt(argv,"tbi:",['input='])
-    except getopt.GetoptError:
-        print("bvm.py [-t] [-b] [-i] filename.bvm")
-        sys.exit(2)
-        
-    guiMode = True
-    inputMode = "asm"
-    inFile = None
 
-    for opt, arg in opts:
-        if opt == '-t':
-            guiMode = False
-        if opt == '-b':
-            inputMode = "bin"
-        if opt == '-i':
-            inFile = arg
+    inFile = argv[0]
 
-    if guiMode:
-        gui = GUI(inputMode)
-        gui.load(inFile)
-        gui.run()
-    else:
-        # No GUI, run program.bvm
-        bvm = BVM(inputMode)
-        bvm.load(inFile)
-        bvm.run()
+    gui = GUI()
+    gui.load(inFile)
+    gui.run()
 
 
 if __name__ == "__main__":

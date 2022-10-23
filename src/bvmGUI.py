@@ -24,8 +24,8 @@ def bits(n, b):
     return pad(bin(n).split('b')[1],b)
 
 class GUI:
-    def __init__(self, inputMode):
-        self.badge = Badge(inputMode)
+    def __init__(self):
+        self.badge = Badge()
         self.guiScale = 3
         self.width = 3696/self.guiScale
         self.height = 1992/self.guiScale
