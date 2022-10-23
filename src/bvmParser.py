@@ -24,7 +24,6 @@ def toHexByte(n: int) -> str:
 
 
 def parse(instruction: list) -> dict:
-    print(instruction)
     #ins = instruction.split(" ")
     AB = toHexByte(instruction[0])
     CD = toHexByte(instruction[1])
