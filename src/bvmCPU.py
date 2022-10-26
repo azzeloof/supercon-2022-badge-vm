@@ -270,8 +270,8 @@ class CPU:
             nnBin = bin(args['nn']).split('b')[1]
             if len(nnBin) < 8:
                 nnBin = '0'*(8-len(nnBin)) + nnBin
-            self.ram[14] = nnBin[4:8]
-            self.ram[15] = nnBin[0:4]
+            self.ram[14] = int(nnBin[4:8])
+            self.ram[15] = int(nnBin[0:4])
     
 
     def JR(self, args):
